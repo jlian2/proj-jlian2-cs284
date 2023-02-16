@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Write-up</title>
+    <title>Project1 Write-up (Yueqing Feng, Jiachen Lian)</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -45,13 +45,36 @@
 		how rasterizing line happens, our idea is to only look at theb points that near the triangle. Specifically, we first get
 		the minimum value of x and y coordinate of the triangle. All points out of these boundries will not be considered. The code for this is as follows:
 	</p>
+	<br>
 	<code>
-		    for (int i = ceil(x_min - 0.5); i <= floor(x_max + 0.5); i++){
-			        for (int j = ceil(y_min - 0.5); j <= floor(y_max + 0.5); j++){
+		    for (int i = ceil(x_min - 0.5); i <= floor(x_max + 0.5); i++){ 
+			        for (int j = ceil(y_min - 0.5); j <= floor(y_max + 0.5); j++){...
+					}
+				}
 	</code>
-	<p>
 
+	<br>
+	<p>
+	The next core part is to judge of the point is in the triangle. There are many ways to check this. We use barycentric coordinates to achieve this.
+	Specifically, we compute the barycentric coordnates of the current point: u, v and (1-u-v). The condition is just that all of these coordinates are non-negative. This is shown as below:
 	</p>
+
+	<pre>
+		<code>
+	  bool RasterizerImp::inside_triangle(float p_x, float p_y,
+		  float x0, float y0,
+		  float x1, float y1,
+		  float x2, float y2) {
+		float det_T = (x1 - x0) * (y2 - y0) - (x2 - x0) * (y1 - y0);
+		float det_T1 = (p_x - x0) * (y2 - y0) - (p_y - y0) * (x2 - x0);
+		float det_T2 = (x1 - x0) * (p_y - y0) - (y1 - y0) * (p_x - x0);
+		float u = det_T1 / det_T;
+		float v = det_T2 / det_T;
+	  
+		return u >= 0 && v >= 0 && (u + v) <= 1;
+	  }
+		</code>
+	  </pre>
     <img src="imgs/test4.png" alt="test4 screenshot">
 
     <h2>Task 2</h2>

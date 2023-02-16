@@ -105,7 +105,73 @@
 
 
     <h2>Task 2</h2>
-    <p><!-- Your explanation for Task 2 goes here --></p>
+    <p>We can think two aspects of the reason why supersampling is helpful. First, the increased sampling rate would be closer to the highest frequency in the original image. Second, supersampling acts as a filter to "filter out" the high frequency
+		components in the original image. The first point is more heuristic while the second one is more formal. 
+	</p>
+	<br>
+	<p>
+		In my implementation, at each pixel, I would sample "sampling rate" points. I attach the core code below:
+	</p>	
+	<pre>
+		<code>
+			for (int i = 0; i < width; i++){
+				if (i < x_min - 1 || i > x_max + 1) continue;
+				for (int j = 0; j < height; j++){
+					if (j < y_min - 1 || j > y_max + 1) continue;
+					for (int sub_i = 0; sub_i < num_per_pixel; sub_i++){
+						for (int sub_j = 0; sub_j < num_per_pixel; sub_j++){
+							float p_x = i + float((sub_i + 1) * 2 -1)  / float(num_per_pixel * 2);
+							float p_y = j + float((sub_j + 1) * 2 - 1) / float(num_per_pixel * 2);
+							if (inside_triangle(p_x, p_y, x0, y0, x1, y1, x2, y2)){
+								sample_buffer[sample_rate * (i * height + j) + sub_i * num_per_pixel + sub_j] = color;
+							}
+						}
+					}
+				}
+			}
+	</code>
+	</pre>
+
+	<p>
+		where p_x and p_y is the x and y coordinate for all "sampling rate" sample points. We also updated the sample buffer to increase the capacity of it. Note that once we have "sampling rate" sample points, we then average the colors:
+	</p>
+
+	<pre>
+		<code>
+			void RasterizerImp::resolve_to_framebuffer() {
+				// TODO: Task 2: You will likely want to update this function for supersampling support
+				int num_per_pixel = sqrt(this->sample_rate);
+				for (int i = 0; i < width; i++) {
+				  for (int j = 0; j < height; j++) {
+					Color actual_col;
+			
+					for (int sub_i = 0; sub_i < num_per_pixel; sub_i++){
+						for (int sub_j = 0; sub_j < num_per_pixel; sub_j++){
+							float p_x = i + float((sub_i + 1) * 2 -1)  / float(num_per_pixel * 2);
+							float p_y = j + float((sub_j + 1) * 2 - 1) / float(num_per_pixel * 2);
+							Color color_new = this->sample_buffer[sample_rate * (i * height + j) + sub_i * num_per_pixel + sub_j];
+							if (sub_i == 0 && sub_j == 0){
+								actual_col = color_new;
+							}
+							else{
+								actual_col += color_new;  //we are going to take the average of colors
+							}
+					  }
+					}
+			
+					//This is the actual color which is averaged over all sub-pixels in one pixel.
+					actual_col = actual_col * (1.0 / this->sample_rate);
+			
+					for (int k = 0; k < 3; ++k) {
+					  this->rgb_framebuffer_target[3 * (j * width + i) + k] = (&actual_col.r)[k] * 255;
+					}
+			
+				  }
+				}
+			  }	
+		</code>
+	</pre>
+
     <img src="path/to/test4_1.png" alt="test4 sample rate 1 screenshot">
     <img src="path/to/test4_4.png" alt="test4 sample rate 4 screenshot">
     <img src="path/to/test4_16.png" alt="test4 sample rate 16 screenshot">

@@ -194,17 +194,57 @@
 
     <h2>Task 3</h2>
     <p><!-- Your explanation for Task 3 goes here --></p>
-    <img src="path/to/my_robot.png" alt="my_robot screenshot">
+	<div style="display: flex; flex-wrap: wrap;">
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/img2_1.png" alt="Image 1">
+		  <div class="caption">Fig 2-1 (sr=1)</div>
+		</div>
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/img2_2.png" alt="Image 2">
+		  <div class="caption">Fig 2-2 (sr=4)</div>
+		</div>
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/img2_3.png" alt="Image 3">
+		  <div class="caption">Fig 2-3 (sr=16)</div>
+		</div>
+	  </div>
 
     <h2>Task 4</h2>
-    <p><!-- Your explanation for Task 4 goes here --></p>
-    <img src="path/to/test7.png" alt="test7 screenshot">
+    <p>Barycentric coordinates can be regarded as the weights that each vertex contributes to in the triangle. The weights can be with respect to position, color, etc. In the triangle rasterization, for any point that is 
+		to be rasterized, the color is the weighted sum of the color of three vertices. I can draw a triangle with three vertices colored with red, blue and yellow respectively. 
+		To do so, I first follow svg/basic/test7.svg style to use the predefined "colortri" syntax to define the desired triangle.  The code for such svg file is shown as below:
+	</p>
+<pre>
+	<code>
+		<?xml version="1.0" encoding="utf-8"?>
+		<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+		<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="200.0px" height="200.0px" viewBox="0 0 200 200" enable-background="new 0 0 200 200"
+			 xml:space="preserve">
+		
+		
+		<colortri points="0 0 200 0 100 150" colors="1 0 0 1 0 1 0 1 0 0 1 1"/>
+		</svg>	
+	</code>
+</pre>
+<p>
+	Then the rasterization is shown as below. 
+</p>
+
+<div style="display: flex; flex-wrap: wrap;">
+	<div style="flex: 10%; padding: 5px; text-align: center">
+	  <img src="images/img4_1.png" alt="Image 4_1">
+	  <div class="caption">Fig 4-1</div>
+	</div>
+  </div>
 
     <h2>Task 5</h2>
     <p>The idea of pixel sampling is we try to map the point A in the world space to point B in the texture space. Then we just look up the color for point B in the texture space. 
 		There are two popular pixel sampling methods: nearsest and bilinear. For the nearest sampling, we would get the point in the texture space that is nearest to point B. For bilinear mapping, 
 		we would get the four points around point B (typically the four points of one pixel in the textual space). Then the color of point B is bi-linearly interpolated based the colors of those 4 colors.  
 	</p>
+
     <img src="path/to/texmap_nearest_1.png" alt="texmap nearest 1 screenshot">
     <img src="path/to/texmap_nearest_16.png" alt="texmap nearest 16 screenshot">
     <img src="path/to/texmap_bilinear_1.png" alt="texmap bilinear 1 screenshot">

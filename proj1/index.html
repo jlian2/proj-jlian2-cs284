@@ -212,20 +212,29 @@
     <h2>Task 4</h2>
     <p>Barycentric coordinates can be regarded as the weights that each vertex contributes to in the triangle. The weights can be with respect to position, color, etc. In the triangle rasterization, for any point that is 
 		to be rasterized, the color is the weighted sum of the color of three vertices. I can draw a triangle with three vertices colored with red, blue and yellow respectively. 
-		To do so, I first follow svg/basic/test7.svg style to use the predefined "colortri" syntax to define the desired triangle.  The code for such svg file is shown as below:
+		To do so, I first follow svg/basic/test7.svg style to use the predefined "colortri" syntax to define the desired triangle.  The core code for such svg file is shown as:
 	</p>
-<pre>
-	<code>
-		 <!-- <colortri points="0 0 200 0 100 150" colors="1 0 0 1 0 1 0 1 0 0 1 1"/> -->
-	</code>
-</pre>
+
+	<pre>
+		<code>
+			&lt?xml version="1.0" encoding="utf-8"?&gt
+			&lt!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt
+			&ltsvg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 width="200.0px" height="200.0px" viewBox="0 0 200 200" enable-background="new 0 0 200 200"
+				 xml:space="preserve"&gt
+			
+			&ltcolortri points="0 0 200 0 100 150" colors="1 0 0 1 0 1 0 1 0 0 1 1"&gt
+			&lt/svg&gt
+		</code>
+	</pre>
+
 <p>
 	Then the rasterization is shown as below, from which we can see that the color of the points inside of the triangle is the mixture of vertex colors. 
 </p>
 
 <div style="display: flex; flex-wrap: wrap;">
 	<div style="flex: 3%; padding: 5px; text-align: center">
-	  <img src="images/img4_1.png" alt="Image 4_1", width="100" height="100">
+	  <img src="images/img4_1.png" alt="Image 4_1", width="300">
 	  <div class="caption">Fig 4-1</div>
 	</div>
   </div>
@@ -236,7 +245,7 @@
 
   <div style="display: flex; flex-wrap: wrap;">
 	<div style="flex: 3%; padding: 5px; text-align: center">
-	  <img src="images/img4_2.png" alt="Image 4_2", width="100" height="100">
+	  <img src="images/img4_2.png" alt="Image 4_2", width="300">
 	  <div class="caption">Fig 4-2</div>
 	</div>
   </div>

@@ -9,7 +9,15 @@
     <p><!-- Your overview goes here --></p>
 
     <h2>Task 1</h2>
-    <p><!-- Your explanation for Task 1 goes here --></p>
+    <p>In the implementation of triangle rasterization, the core idea is to check if a point is inside
+		the triangle. However, it is pretty inefficient to check all points in the bounding box. So inspired the idea of 
+		how rasterizing line happens, our idea is to only look at theb points that near the triangle. Specifically, we first get
+		the minimum value of x and y coordinate of the triangle. All points out of these boundries will not be considered. The code for this is as follows:
+	</p>
+	<code>
+		    for (int i = ceil(x_min - 0.5); i <= floor(x_max + 0.5); i++){
+			        for (int j = ceil(y_min - 0.5); j <= floor(y_max + 0.5); j++){
+	</code>
     <img src="path/to/test4.png" alt="test4 screenshot">
 
     <h2>Task 2</h2>

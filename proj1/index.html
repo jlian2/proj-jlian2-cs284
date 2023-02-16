@@ -45,7 +45,7 @@
 		how rasterizing line happens, our idea is to only look at theb points that near the triangle. Specifically, we first get
 		the minimum value of x and y coordinate of the triangle. All points out of these boundries will not be considered. The code for this is as follows:
 	</p>
-	<br>
+
 	<pre>
 		<code>
 		    for (int i = ceil(x_min - 0.5); i <= floor(x_max + 0.5); i++){ 
@@ -53,11 +53,8 @@
 					}
 				}
 	</code>
-
 	</pre>
 
-
-	<br>
 	<p>
 	The next core part is to judge of the point is in the triangle. There are many ways to check this. We use barycentric coordinates to achieve this.
 	Specifically, we compute the barycentric coordnates of the current point: u, v and (1-u-v). The condition is just that all of these coordinates are non-negative. This is shown as below:
@@ -79,7 +76,20 @@
 	  }
 		</code>
 	  </pre>
-    <img src="imgs/test4.png" alt="test4 screenshot">
+	  <div style="display: flex; flex-wrap: wrap;">
+		<div style="flex: 50%; padding: 5px;">
+		  <img src="imgs/img1.png" alt="Image 1">
+		</div>
+		<div style="flex: 50%; padding: 5px;">
+		  <img src="imgs/img2.png" alt="Image 2">
+		</div>
+		<div style="flex: 50%; padding: 5px;">
+		  <img src="imgs/img3.png" alt="Image 3">
+		</div>
+		<div style="flex: 50%; padding: 5px;">
+		  <img src="imgs/img4.png" alt="Image 4">
+		</div>
+	  </div>
 
     <h2>Task 2</h2>
     <p><!-- Your explanation for Task 2 goes here --></p>

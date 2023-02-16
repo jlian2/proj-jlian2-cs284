@@ -85,19 +85,19 @@
 	  <h3>Image Results</h3>
 	  <div style="display: flex; flex-wrap: wrap;">
 		<div style="flex: 10%; padding: 5px; text-align: center">
-		  <img src="imgs/img1.png" alt="Image 1">
+		  <img src="images/img1.png" alt="Image 1">
 		  <div class="caption">Fig 1-1</div>
 		</div>
 		<div style="flex: 10%; padding: 5px; text-align: center">
-		  <img src="imgs/img2.png" alt="Image 2">
+		  <img src="images/img2.png" alt="Image 2">
 		  <div class="caption">Fig 1-2</div>
 		</div>
 		<div style="flex: 10%; padding: 5px; text-align: center">
-		  <img src="imgs/img3.png" alt="Image 3">
+		  <img src="images/img3.png" alt="Image 3">
 		  <div class="caption">Fig 1-3</div>
 		</div>
 		<div style="flex: 10%; padding: 5px; text-align: center">
-		  <img src="imgs/img4.png" alt="Image 4">
+		  <img src="images/img4.png" alt="Image 4">
 		  <div class="caption">Fig 1-4</div>
 		</div>
 	  </div>
@@ -175,15 +175,15 @@
 	<h3>Image Results</h3>
 	<div style="display: flex; flex-wrap: wrap;">
 	  <div style="flex: 10%; padding: 5px; text-align: center">
-		<img src="imgs/img2_1.png" alt="Image 1">
+		<img src="images/img2_1.png" alt="Image 1">
 		<div class="caption">Fig 2-1 (sr=1)</div>
 	  </div>
 	  <div style="flex: 10%; padding: 5px; text-align: center">
-		<img src="imgs/img2_2.png" alt="Image 2">
+		<img src="images/img2_2.png" alt="Image 2">
 		<div class="caption">Fig 2-2 (sr=4)</div>
 	  </div>
 	  <div style="flex: 10%; padding: 5px; text-align: center">
-		<img src="imgs/img2_3.png" alt="Image 3">
+		<img src="images/img2_3.png" alt="Image 3">
 		<div class="caption">Fig 2-3 (sr=16)</div>
 	  </div>
 	</div>
@@ -201,7 +201,10 @@
     <img src="path/to/test7.png" alt="test7 screenshot">
 
     <h2>Task 5</h2>
-    <p><!-- Your explanation for Task 5 goes here --></p>
+    <p>The idea of pixel sampling is we try to map the point A in the world space to point B in the texture space. Then we just look up the color for point B in the texture space. 
+		There are two popular pixel sampling methods: nearsest and bilinear. For the nearest sampling, we would get the point in the texture space that is nearest to point B. For bilinear mapping, 
+		we would get the four points around point B (typically the four points of one pixel in the textual space). Then the color of point B is bi-linearly interpolated based the colors of those 4 colors.  
+	</p>
     <img src="path/to/texmap_nearest_1.png" alt="texmap nearest 1 screenshot">
     <img src="path/to/texmap_nearest_16.png" alt="texmap nearest 16 screenshot">
     <img src="path/to/texmap_bilinear_1.png" alt="texmap bilinear 1 screenshot">

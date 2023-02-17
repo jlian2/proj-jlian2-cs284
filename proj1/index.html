@@ -427,5 +427,29 @@
 	<p>
 		About pixel sampling, level sampling and sampling rate. Pixel sampling is fast and uses little memory, but can result in aliasing artifacts. Level sampling produces smoother images but requires more memory and computation. Increasing the number of samples per pixel improves antialiasing quality but also increases memory and computation requirements. The tradeoff is between antialiasing power, speed, and memory usage, with diminishing returns for additional memory and computation.
 	</p>
+
+	<p>
+		I random select a png named test_jiachen.png. I put the rendered results below:
+	</p>
+	<br>
+	<div style="display: flex; flex-wrap: wrap;">
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/L_0_P_L.png" alt="Image 1">
+		  <div class="caption">Level 0 Pixel Linear SR=1</div>
+		</div>
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/L_0_P_N.png" alt="Image 2">
+		  <div class="caption">Level 0 Pixel Nearest SR=1</div>
+		</div>
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/L_N_P_L.png" alt="Image 3">
+		  <div class="caption">Level N Pixel Linear SR=1</div>
+		</div>
+		<div style="flex: 10%; padding: 5px; text-align: center">
+		  <img src="images/L_N_P_N.png" alt="Image 4">
+		  <div class="caption">Level N Pixel Nearst SR=1</div>
+		</div>
+	  </div>
+
   </body>
 </html>

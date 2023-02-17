@@ -321,7 +321,10 @@
 	</div>
 
 	<br>
-	We list the 4 sampling results (Nearest(SR=1/16), Bilinear(SR=1/16)) from a random figure. The results are shown above.
+	We list the 4 sampling results (Nearest(SR=1/16), Bilinear(SR=1/16)) from a random figure. The results are shown above. We observe that the different is little when SR=16. The reason might be that
+	supersampling already filter high frequency, which plays similar role to bilinear filter. I mean the "filter" in SR=16+nearest would be pretty similar to SR=16+bilinear. When SR=1, there is a slight difference. As shown below, 
+	the color in the red block is more continuous for bilinear method than that for nearest sampling (brown color vs shallow blue). This is reasonable since bilinear method will filter higher frequency components than 
+	nearsest sampling methods. However, the overall difference is still not important.
 	<br>
 	
 	<div style="display: flex; justify-content: center; align-items: center; padding: 5px; text-align: center">

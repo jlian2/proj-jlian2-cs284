@@ -336,7 +336,35 @@
     <h2>Task 6</h2>
     <p>The overall idea of level sampling is that, because some areas in the texture space is denser while some areas are sparser, we need to adopt different sampling technique for these different "areas".
 		We refer to these areas as "level". Generally, in the areas that are denser in the texture space, we should increase SR, and in the areas
-		that are sparser, we should decrease the SR. 
+		that are sparser, we should decrease the SR. The levels can be computed via the amplitude of the derivatives of the coordinates in the texture space.
 	</p>
+
+	<br>
+	<p>
+		In the implementation, we first need to get the current level. The code is shown as follows:
+	</p>
+	<pre>
+		<code>
+			float Texture::get_level(const SampleParams& sp) {
+				// TODO: Task 6: Fill this in.
+				Vector2D L_1 = sp.p_dx_uv - sp.p_uv;  //du/dx, dv/dx
+				Vector2D L_2 = sp.p_dy_uv - sp.p_uv;  //du/dy, dv/dy
+				L_1.x = L_1.x * width;
+				L_1.y = L_1.y * height;
+				L_2.x = L_2.x * width;
+				L_2.y = L_2.y * height;
+			
+				float level = log2(max(sqrt(pow(L_1.x,2)+pow(L_1.y,2)), sqrt(pow(L_2.x,2)+pow(L_2.y,2))));
+				if (level < 0){
+					return 0.0;
+				}
+			
+				if(level >= mipmap.size()){
+					return mipmap.size() - 1;
+				}
+				return level;
+			  }	
+		</code>
+	</pre>
   </body>
 </html>

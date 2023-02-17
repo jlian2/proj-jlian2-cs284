@@ -329,15 +329,14 @@
 	
 	<div style="display: flex; justify-content: center; align-items: center; padding: 5px; text-align: center">
 		<img src="images/diff_1.png" alt="Image 4_2", width="200">
-		<div class="caption">Slight different when SR=1, upper is nearest and lower is bilinear. </div>
+		<div class="caption">Slight difference when SR=1, upper is nearest and lower is bilinear. </div>
 	  </div>
 
 
     <h2>Task 6</h2>
-    <p><!-- Your explanation for Task 6 goes here --></p>
-    <img src="path/to/my_texmap_L0PNEAREST.png" alt="my_texmap L0 PNEAREST screenshot">
-    <img src="path/to/my_texmap_L0PLINEAR.png" alt="my_texmap L0 PLINEAR screenshot">
-    <img src="path/to/my_texmap_LNEARESTPNEAREST.png" alt="my_texmap LNEAREST PNEAREST screenshot">
-    <img src="path/to/my_texmap_LNEARESTPLINEAR.png" alt="my_texmap LNEAREST PLINEAR screenshot">
+    <p>The overall idea of level sampling is that, because some areas in the texture space is denser while some areas are sparser, we need to adopt different sampling technique for these different "areas".
+		We refer to these areas as "level". Generally, in the areas that are denser in the texture space, we should increase SR, and in the areas
+		that are sparser, we should decrease the SR. 
+	</p>
   </body>
 </html>

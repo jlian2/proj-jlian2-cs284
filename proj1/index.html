@@ -241,13 +241,69 @@
     <h2>Task 5</h2>
     <p>The idea of pixel sampling is we try to map the point A in the world space to point B in the texture space. Then we just look up the color for point B in the texture space. 
 		There are two popular pixel sampling methods: nearsest and bilinear. For the nearest sampling, we would get the point in the texture space that is nearest to point B. For bilinear mapping, 
-		we would get the four points around point B (typically the four points of one pixel in the textual space). Then the color of point B is bi-linearly interpolated based the colors of those 4 colors.  
+		we would get the four points around point B (typically the four points of one pixel in the textual space). Then the color of point B is bi-linearly interpolated based the colors of those 4 colors. 
+		For the implementation,  we still use barycentric coordinates of the points in the world space. And these cooridates are used in the texture space. The core parts for this is the nearest sampling and bilinear sampling process.
+		Since the process is pretty straightforward, we just put the code as below.
 	</p>
+	<pre>
+		<code>
+			Color Texture::sample_nearest(Vector2D uv, int level) {
+				// TODO: Task 5: Fill this in.
+				auto& mip = mipmap[level];
+			
+				if (level < 0) {
+					level = 0;
+				} else if (level >= mipmap.size()) {
+					level = mipmap.size() - 1;
+				}
+			
+				const int w = mip.width;
+				const int h = mip.height;
+				int map_x = (int) round(uv.x * (w - 1));
+				int map_y = (int) round(uv.y * (h - 1));
+			
+				if (map_x < 0 || map_x >= w || map_y < 0 || map_y >= h) {
+					return Color(1, 0, 1);
+				}
+				return mip.get_texel(map_x, map_y);
+			  }
+		</code>
+	</pre>
 
-    <img src="path/to/texmap_nearest_1.png" alt="texmap nearest 1 screenshot">
-    <img src="path/to/texmap_nearest_16.png" alt="texmap nearest 16 screenshot">
-    <img src="path/to/texmap_bilinear_1.png" alt="texmap bilinear 1 screenshot">
-    <img src="path/to/texmap_bilinear_16.png" alt="texmap bilinear 16 screenshot">
+	<pre>
+		<code>
+			Color Texture::sample_bilinear(Vector2D uv, int level) {
+				// TODO: Task 5: Fill this in.
+				  auto& mip = mipmap[level];
+			
+				  if (level < 0) {
+					  level = 0;
+				  } else if (level >= mipmap.size()) {
+					  level = mipmap.size() - 1;
+				  }
+			
+				  const int w = mip.width;
+				  const int h = mip.height;
+				  float map_x = uv.x * (w - 1);
+				  float map_y = uv.y * (h - 1);
+			
+				  Color color1 = mip.get_texel(floor(map_x), ::floor(map_y));
+				  Color color2 = mip.get_texel(floor(map_x), ::ceil(map_y));
+				  Color color3 = mip.get_texel(ceil(map_x), ::floor(map_y));
+				  Color color4 = mip.get_texel(ceil(map_x), ::ceil(map_y));
+			
+				  Color lerp1 = interp(map_x - ::floor(map_x), color1, color3);
+				  Color lerp2 = interp(map_x - ::floor(map_x), color2, color4);
+				  Color final_color = interp(map_y - ::floor(map_y), lerp1, lerp2);
+				  return final_color;
+			  }
+		</code>
+	</pre>
+
+    <img src="images/img5_1.png" alt="texmap nearest 1 screenshot">
+    <img src="images/img5_2.png" alt="texmap nearest 16 screenshot">
+    <img src="images/img5_3.png" alt="texmap bilinear 1 screenshot">
+    <img src="images/img5_4.png" alt="texmap bilinear 16 screenshot">
 
     <h2>Task 6</h2>
     <p><!-- Your explanation for Task 6 goes here --></p>
